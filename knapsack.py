@@ -14,12 +14,12 @@ def allSubsetsHelper(table, curValue, curWeight, curSubset, subsets):
         # stop adding items to optimal subset if finished
         if curValue <= 0:
             break
-        # check if there are more than one subset for this row
+        # recursively check if there are more than one subset for this row
         elif valueWithItem == valueWithoutItem:
             curSubsetCopy = copy.deepcopy(curSubset)
             curSubsetCopy.append([weights[i], values[i]])
             allSubsetsHelper(table, curValue - values[i], curWeight - weights[i], curSubsetCopy, subsets)
-        # if find item that is included in subset, print out
+        # if find item that is included in subset, add to current subset
         elif curValue != dp[i-1][curWeight]:
             curSubset.append([weights[i], values[i]])
             curValue -= values[i]
